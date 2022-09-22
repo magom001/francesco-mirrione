@@ -4,27 +4,29 @@ interface FooterProps {
 export function Footer({ className }: FooterProps) {
   return (
     <footer
-      className={`${className} flex overflow-hidden bg-gray-300 gap-6 p-6`}
+      className={`${className} flex flex-col overflow-hidden bg-gray-300 gap-6 p-6`}
     >
-      <div className="hidden md:block flex-grow">
-        <div className="aspect-square">
-          <MapEmbed />
+      <div className="flex gap-6">
+        <div className="hidden md:block flex-grow">
+          <div className="aspect-square">
+            <MapEmbed />
+          </div>
+        </div>
+        <div className="grow-[4] flex flex-col gap-2">
+          <ContactForm />
+        </div>
+        <div className="hidden lg:block flex-grow">
+          <div className="aspect-square">
+            <iframe
+              src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FMirrioneFrancescoLegnamiSrl%2F&tabs=timeline&width=340&height=450&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+              className="w-full h-full"
+              scrolling="no"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            />
+          </div>
         </div>
       </div>
-      <div className="grow-[4] flex flex-col gap-2">
-        <ContactForm />
-        <Address />
-      </div>
-      <div className="hidden lg:block flex-grow">
-        <div className="aspect-square">
-          <iframe
-            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FMirrioneFrancescoLegnamiSrl%2F&tabs=timeline&width=340&height=450&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-            className="w-full h-full"
-            scrolling="no"
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-          />
-        </div>
-      </div>
+      <Address />
     </footer>
   );
 }
@@ -82,16 +84,25 @@ function ContactForm() {
 
 function Address() {
   return (
-    <address className="text-sm">
-      <p>Francesco Mirrione Legnami s.r.l.</p>
-      <p>SS113, 335/700, 91013 Calatafimi TP</p>
-      <p>
-        Tel.: <a href="tel:+3909242300">+39 0924 23000</a> – WhatsApp{' '}
-        <a href="tel:+393756696729">+39 375 669 6729</a>
-      </p>
-      <hr className="mt-2" />
-      <p>Aperto dal Lunedì al Venerdì dalle ore 08.30 alle 18.00</p>
-      <p>Aperto il Sabato dalle ore 8.30 alle 13.30</p>
+    <address className="text-sm flex flex-col md:flex-row justify-evenly gap-6">
+      <div className="flex-grow">
+        <p>Francesco Mirrione Legnami s.r.l.</p>
+        <p>SS113, 335/700, 91013 Calatafimi TP</p>
+        <p>
+          Tel.:{' '}
+          <a className="underline" href="tel:+3909242300">
+            +39 0924 23000
+          </a>{' '}
+          – WhatsApp{' '}
+          <a className="underline" href="tel:+393756696729">
+            +39 375 669 6729
+          </a>
+        </p>
+      </div>
+      <div className="flex-grow">
+        <p>Aperto dal Lunedì al Venerdì dalle ore 08.30 alle 18.00</p>
+        <p>Aperto il Sabato dalle ore 8.30 alle 13.30</p>
+      </div>
     </address>
   );
 }
