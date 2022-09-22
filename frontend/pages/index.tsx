@@ -1,11 +1,61 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import { Carousel } from '../components/carousel';
+import { Slider } from '../components/slider';
 
 import flooringPic from '../public/images/flooring.jpeg';
 import deckingPic from '../public/images/decks.jpeg';
 import roofsPic from '../public/images/roofs.jpeg';
 import treePic from '../public/images/frassino_fraxinus_excelsior.jpeg';
+import caseInLegnoPic from '../public/images/case-in-legno.jpg';
+
+import caseInLegno1 from '../public/images/case-in-legno-1.jpg';
+import caseInLegno2 from '../public/images/case-in-legno-2.jpg';
+import caseInLegno3 from '../public/images/case-in-legno-3.jpg';
+
+interface CardProps {
+  title: string;
+}
+function Card({ title }: CardProps) {
+  return (
+    <div
+      tabIndex={0}
+      role="button"
+      className="w-full h-full relative overflow-hidden group flex flex-col pt-[30%]"
+    >
+      <Image
+        className="-z-50 group-hover:scale-125 brightness-100 md:brightness-50 group-hover:brightness-100 transition-all duration-200 ease-in-out"
+        src={caseInLegnoPic}
+        alt="tree"
+        layout="fill"
+        objectFit="cover"
+      />
+      <div className="flex flex-col md:opacity-50 md:group-hover:opacity-100 text-white justify-start items-center mb-2 md:translate-y-4 group-hover:translate-y-0 transition-all">
+        <ul className="flex mb-4 w-full justify-center pr-[10%]">
+          {[caseInLegno1, caseInLegno2, caseInLegno3].map((pic, index) => (
+            <li
+              key={index}
+              className="relative rounded-full -mr-[10%] w-[25%] aspect-square overflow-hidden border-white border-2"
+            >
+              <Image
+                src={pic}
+                alt="case in legno"
+                layout="fill"
+                objectFit="cover"
+              />
+            </li>
+          ))}
+        </ul>
+        <h4 className="text-3xl text-center md:text-xl lg:text-3xl font-bold uppercase drop-shadow-md">
+          {title}
+        </h4>
+        <span className="leading-loose md:opacity-0 group-hover:opacity-100 transition-opacity">
+          Vedere album
+        </span>
+      </div>
+    </div>
+  );
+}
 
 const Home: NextPage = () => {
   return (
@@ -39,9 +89,13 @@ const Home: NextPage = () => {
         Italia. Affidabilità, precisione e velocità di esecuzione sono oggi tra
         le caratteristiche più apprezzate dai nostri clienti.
       </p>
-      <div>Something white</div>
+      <Slider>
+        <Card title="case in legno" />
+        <Card title="grandi strutture" />
+        <Card title="tetti, verande e tettoie" />
+      </Slider>
       <div className="bg-gray-300 flex flex-col p-4 drop-shadow-md">
-        <h2 className="uppercase text-4xl leading-loose">
+        <h2 className="uppercase text-4xl leading-10">
           ABBIAMO A CUORE L’AMBIENTE
         </h2>
         <div className="flex items-center">
@@ -71,7 +125,6 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className="h-screen">Hey</div>
     </div>
   );
 };

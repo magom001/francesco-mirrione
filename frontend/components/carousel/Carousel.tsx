@@ -28,6 +28,8 @@ export function Carousel({
 
   const slide = useCallback(
     (direction: number = 1) => {
+      currentItem.current =
+        (currentItem.current + direction + items.length) % items.length;
       window.clearTimeout(timer.current);
       currentAnimation.current?.cancel();
       currentAnimation.current = imageContainerRef.current?.animate(
@@ -38,8 +40,6 @@ export function Carousel({
       if (currentAnimation.current) {
         currentAnimation.current.finished
           .then(() => {
-            currentItem.current =
-              (currentItem.current + direction + items.length) % items.length;
             setSrc(items[currentItem.current].url);
 
             currentAnimation.current = imageContainerRef.current?.animate(
