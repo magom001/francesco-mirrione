@@ -13,6 +13,18 @@ import caseInLegno1 from '../public/images/case-in-legno-1.jpg';
 import caseInLegno2 from '../public/images/case-in-legno-2.jpg';
 import caseInLegno3 from '../public/images/case-in-legno-3.jpg';
 
+import rennerImage from '../public/images/renner.jpeg';
+import soltechImage from '../public/images/soltech.jpeg';
+import rothoblaasImage from '../public/images/rothoblaas.jpeg';
+import mmholzImage from '../public/images/mmholz.jpeg';
+
+const partners = [
+  { src: rennerImage, alt: 'Renner logo' },
+  { src: soltechImage, alt: 'Soltech Logo' },
+  { src: rothoblaasImage, alt: 'Rothoblaas Logo' },
+  { src: mmholzImage, alt: 'M&M Holz Logo' },
+] as const;
+
 interface CardProps {
   title: string;
 }
@@ -124,6 +136,21 @@ const Home: NextPage = () => {
             />
           </div>
         </div>
+      </div>
+      <div className="p-6 flex flex-nowrap justify-evenly w-full gap-2">
+        {partners.map((partner) => (
+          <div
+            key={partner.alt}
+            className="h-10 md:h-12 lg:h-20 flex-grow relative"
+          >
+            <Image
+              src={partner.src}
+              alt={partner.alt}
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
